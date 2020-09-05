@@ -1,6 +1,6 @@
 let mongoose = require('mongoose');
 
-module.exports = mongoose.model( 'ToDo', {
+let ToDoModel = mongoose.model( 'Todo', {
   
   text: {
     type: String,
@@ -17,3 +17,8 @@ module.exports = mongoose.model( 'ToDo', {
     default: Date.now()
   }
 } );
+
+
+module.exports = {
+  ToDoModel: ToDoModel
+};

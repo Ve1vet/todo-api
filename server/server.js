@@ -1,10 +1,9 @@
 let express = require( 'express' );
 let bodyParser = require( 'body-parser' );
 
-let mongoose = require( './db/mongoose' );
-let ToDoModel = require( './models/todo' );
-let UserModel = require( './models/user' );
-const todo = require('./models/todo');
+let { mongoose } = require( './db/mongoose' );
+let { ToDoModel } = require( './models/todo' );
+let { UserModel } = require( './models/user' );
 
 let app = express();
 
@@ -24,6 +23,7 @@ app.post( '/todos', ( req, res ) => {
     res.send( doc );
   } ).catch( e => {
     res.status( 400 ).send( e );
+    console.log( `Error => ${e}` );
   } );
 } );
 
@@ -52,3 +52,7 @@ app.post( '/todos', ( req, res ) => {
 // ).catch(
 //   e => console.log( 'Unable to save user', e )
 // );
+
+module.exports = {
+  app: app
+};
