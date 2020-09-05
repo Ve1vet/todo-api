@@ -33,7 +33,7 @@ app.post( '/todos', ( req, res ) => {
     res.send( doc );
   } ).catch( e => {
     res.status( 400 ).send( e );
-    console.log( `Error => ${e}` );
+    //console.log( `Error => ${e}` );
   } );
 } );
 
