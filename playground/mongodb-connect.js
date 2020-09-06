@@ -1,10 +1,10 @@
 // const mongoClient = require('mongodb').MongoClient;
 const { MongoClient, ObjectID } = require('mongodb');
 
-let obj = ObjectID();
-console.log( obj );
+// let obj = ObjectID();
+// console.log( obj );
 
-MongoClient.connect( 'mongodb://localhost:27017/TodoApp', ( error, client ) => {
+/* MongoClient.connect( 'mongodb://localhost:27017/TodoApp', ( error, client ) => {
 
   if( error ){
     console.log( 'Unable to connect to MongoDB server.' );
@@ -13,7 +13,8 @@ MongoClient.connect( 'mongodb://localhost:27017/TodoApp', ( error, client ) => {
   }
   console.log( '\n' );
   console.log( 'Connected to MongoDB server.' );
-  const db = client.db('TodoApp');
+  
+  // const db = client.db('TodoApp');
 
   // Insert new doc into Todos(text,completed)
   // db.collection('Todos').insertOne( {
@@ -47,4 +48,13 @@ MongoClient.connect( 'mongodb://localhost:27017/TodoApp', ( error, client ) => {
 
   client.close();
 
-} );
+} ); */
+
+
+const uri = "mongodb+srv://root:root@mongodblearn.gkrpa.mongodb.net/MongoDBLearn?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true });
+client.connect(err => {
+  const collection = client.db("todoapp").collection("todos");
+  // perform actions on the collection object
+  client.close();
+});
