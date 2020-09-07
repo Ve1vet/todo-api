@@ -6,6 +6,8 @@ let { mongoose } = require( './db/mongoose' );
 let { ToDoModel } = require( './models/todo' );
 let { UserModel } = require( './models/user' );
 
+const _ = require( 'lodash' );
+
 let app = express();
 const port = process.env.PORT || 3000;
 
@@ -90,7 +92,7 @@ app.patch( '/todos/:id', ( req, res ) => {
     body.completedAt = null;
   }
 
-  ToDoModel.findByIdAndUpdate( id, {$set: body}, {new: true} ).then( todo => {
+  ToDoModel.findByIdAndUpdate( id, {$set: body}, {new: true, useFindAndModify: false} ).then( todo => {
 
     if( !todo ){
       return res.status( 404 ).send();

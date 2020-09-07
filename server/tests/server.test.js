@@ -123,9 +123,9 @@ describe( 'GET /todos/:id', () => {
 
 describe( 'DELETE /todos/:id', () => {
   
-  it('should remove a todo', (done) => {
+  it('should remove a todo', done => {
     
-    let hexId = todos[1]._id.toHexString();
+    let hexId = todosPredefined[1]._id.toHexString();
 
     request( app )
     .delete( `/todos/${hexId}` )
@@ -168,7 +168,7 @@ describe( 'PATCH /todos/:id', () => {
   
   it( 'should update the todo', done => {
     
-    let hexId = todos[0]._id.toHexString();
+    let hexId = todosPredefined[0]._id.toHexString();
     let text = 'This should be the new text';
 
     request( app )
@@ -182,14 +182,14 @@ describe( 'PATCH /todos/:id', () => {
       
       expect( res.body.todo.text ).toBe( text );
       expect( res.body.todo.completed ).toBe( true );
-      expect( res.body.todo.completedAt ).toBeA( 'number' );
+      expect( typeof res.body.todo.completedAt ).toBe( 'number' );
     })
     .end( done );
   } );
   
   it( 'should clear completedAt when todo is not completed', done => {
     
-    let hexId = todos[1]._id.toHexString();
+    let hexId = todosPredefined[1]._id.toHexString();
     let text = 'This should be the new text!!';
 
     request( app )
@@ -203,7 +203,7 @@ describe( 'PATCH /todos/:id', () => {
       
       expect( res.body.todo.text ).toBe( text );
       expect( res.body.todo.completed ).toBe( false );
-      expect( res.body.todo.completedAt ).toNotExist();
+      expect( res.body.todo.completedAt ).toBeFalsy();
     } )
     .end( done );
   } );
